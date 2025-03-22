@@ -160,6 +160,22 @@ class ArrayStore extends TaggableStore implements LockProvider
     }
 
     /**
+     * Renames key to newkey.
+     *
+     * @param  string  $key
+     * @param  string  $newkey
+     * @return bool
+     */
+    public function rename($key, $newkey)
+    {
+        if ($key != $newkey) {
+            $this->storage[$newkey] = $this->storage[$key];
+            unset($this->storage[$key]);
+        }
+        return true;
+    }
+
+    /**
      * Get the cache key prefix.
      *
      * @return string
