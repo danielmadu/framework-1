@@ -272,6 +272,22 @@ class RedisStore extends TaggableStore implements LockProvider
     }
 
     /**
+     * Renames key to newkey.
+     *
+     * @param  string  $key
+     * @param  string  $newkey
+     * @return bool
+     */
+    public function rename($key, $newkey)
+    {
+        $connection = $this->connection();
+
+        return (bool) $connection->rename(
+            $this->prefix.$key, $this->prefix.$newkey
+        );
+    }
+
+    /**
      * Remove all expired tag set entries.
      *
      * @return void
