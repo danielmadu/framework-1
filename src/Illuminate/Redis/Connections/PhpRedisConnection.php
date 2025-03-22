@@ -506,6 +506,21 @@ class PhpRedisConnection extends Connection implements ConnectionContract
     }
 
     /**
+     * Renames key to newkey.
+     *
+     * @param  string  $key
+     * @param  string  $newkey
+     * @return bool
+     */
+    public function rename($key, $newkey)
+    {
+        return $this->command('rename', [
+            $key,
+            $newkey,
+        ]);
+    }
+
+    /**
      * Execute a raw command.
      *
      * @param  array  $parameters
